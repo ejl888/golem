@@ -9,4 +9,16 @@
   <packaging>war</packaging>
   <name>Golum - Vocabularies administration</name>
   <description>Administer the vocabulary store</description>
+  <dependencies>
+      <dependency>
+          <groupId>nl.finalist.golem</groupId>
+          <artifactId>golem-vocabularies</artifactId>
+          <version>0.0.1-SNAPSHOT</version>
+      </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+  </dependencies>
 </project>
