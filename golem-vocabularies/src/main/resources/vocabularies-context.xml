@@ -18,4 +18,6 @@
     <tx:annotation-driven mode="proxy" />
     
     <neo4j:config storeDirectory="data/graph.db"/>
+    
+    <neo4j:repositories base-package="nl.finalist.golem.repository"/>
 </beans>
