@@ -27,14 +27,6 @@ public class VocabularyServiceImplTest {
     @Configuration
     @ImportResource(value = {"classpath:/vocabularies-test-context.xml" })
     static class ContextConfiguration {
-        
-//        @Bean public VocabularyService vocabularyService() {
-//            return new VocabularyServiceImpl();
-//        }
-//        
-//        @Bean public VdexMerger vdexMerger() {
-//            return new VdexMerger();
-//        }
     }
     
     @Test public void writing_flat_vdex_without_relations() 
