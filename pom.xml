@@ -4,4 +4,8 @@
   <artifactId>golem-parent</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <modules>
+      <module>golem-vocabularies</module>
+      <module>golum-vocabularies-admin</module>
+  </modules>
 </project>
