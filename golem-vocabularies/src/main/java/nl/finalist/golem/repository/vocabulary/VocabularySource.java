@@ -7,8 +7,23 @@ import org.springframework.data.neo4j.annotation.NodeEntity;
 @NodeEntity
 public class VocabularySource {
 
-    @GraphId Long graphId;
+    @GraphId private Long nodeId;
     
+    @Indexed(unique = false) private String id;  // i.e. LomV1.0 
     
-    @Indexed(unique = false) String id;  // i.e. LomV1.0 
+    VocabularySource() {
+        // Required by spring-data
+    }
+    
+    public VocabularySource(String id) {
+        this.id = id;
+    }
+
+    public Long getNodeId() {
+        return nodeId;
+    }
+
+    public String getId() {
+        return id;
+    }
 }
