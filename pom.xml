@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>golem-vocabularies</module>
-        <module>golum-vocabularies-admin</module>
+        <module>golem-vocabularies-admin</module>
     </modules>
 
     <properties>
@@ -32,6 +32,11 @@
     </dependencyManagement>
 
     <dependencies>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>14.0.1</version>
+        </dependency>
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib</artifactId>
