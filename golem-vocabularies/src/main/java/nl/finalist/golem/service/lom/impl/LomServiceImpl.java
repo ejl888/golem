@@ -12,6 +12,7 @@ import java.util.zip.ZipFile;
 
 import javax.xml.bind.JAXBException;
 
+import nl.finalist.golem.repository.lom.LomRecordNode;
 import nl.finalist.golem.service.lom.LomService;
 import nl.finalist.golem.service.lom.ProcessSummary;
 
@@ -19,35 +20,38 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
 public class LomServiceImpl implements LomService {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(LomServiceImpl.class);
 
 	@Autowired
-	private LomMerger lomMerger;
+	private LomRecordMerger lomMerger;
 
 	@Override
 	public ProcessSummary loadLomsFromArchive(File archiveFile) throws ZipException, IOException, JAXBException {
 		final ProcessSummary result = new ProcessSummary();
 
 		try (ZipFile zipfile = new ZipFile(archiveFile)) {
+            final int numberOfEntries = zipfile.size();
 			
+            int i = 0;
 			// Enumerate each entry
 			for (Enumeration<? extends ZipEntry> entries = zipfile.entries(); entries.hasMoreElements();) {
 				ZipEntry zipEntry = entries.nextElement();
-
-				
+				i++;
 				try (InputStream zipEntryInputStream = zipfile.getInputStream(zipEntry)) {
 			
 					Reader zipEntryReader = new InputStreamReader(zipEntryInputStream, "UTF-8");
 					
-					lomMerger.merge(zipEntryReader, toLomRecordId(zipEntry.getName()));
+					final LomRecordNode lomRecordNode = lomMerger.merge(zipEntryReader, 
+					        toLomRecordId(zipEntry.getName()));
+					LOGGER.info("Processed entry {} from {} nodeID = {}", i, numberOfEntries, lomRecordNode.getNodeId());
+                } catch (JAXBException ex) {
+                    LOGGER.debug("Skipping entry {} due to unmarshall error {}", zipEntry.getName(), ex.getMessage());
 				} catch (Exception ex) {
-					LOGGER.warn("Skipping entry {} due to {}", zipEntry.getName(), ex.getMessage());
+				    LOGGER.error("foutje", ex);
 				}
 			}
 		}

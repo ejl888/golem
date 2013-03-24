@@ -11,7 +11,8 @@ public class VocabularySourceNode {
 
     @GraphId private Long nodeId;
     
-    @Indexed(unique = true) private String uri;  // i.e. LomV1.0 
+    @Indexed(unique = true, indexName = "vocabulary-source-uri") 
+    private String uri;  // i.e. LomV1.0 
 
     public static final String LOM_V1_0 = "LomV1.0";
     

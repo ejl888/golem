@@ -1,6 +1,5 @@
 package org.ieee.ltsc;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -17,8 +16,8 @@ import javax.xml.bind.annotation.XmlType;
 public final class TaxonPath {
 
     @XmlElementWrapper(name = "source")
-    @XmlElement(name = "langstring")
-    private List<Langstring> source = new ArrayList<Langstring>(1);
+    @XmlElement(name = "string")
+    private List<Langstring> source;
 
     @XmlElement(name = "taxon")
     private List<Taxon> taxons = new LinkedList<Taxon>();
@@ -27,12 +26,9 @@ public final class TaxonPath {
         // required by JAXB
     }
 
-    public TaxonPath(Langstring source) {
-        this.source.add(source);
-    }
 
     public Langstring getSource() {
-        return source != null && !source.isEmpty() ? source.get(0) : null;
+        return source == null || source.size() == 0 ? null : source.get(0);
     }
 
     public List<Taxon> getTaxons() {

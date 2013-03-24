@@ -21,7 +21,7 @@ import javax.xml.bind.annotation.XmlType;
 public final class General {
 
     @XmlElementWrapper(name = "title")
-    @XmlElement(name = "langstring")
+    @XmlElement(name = "string")
     private List<Langstring> title;
 
     @XmlElement(name = "catalogentry")

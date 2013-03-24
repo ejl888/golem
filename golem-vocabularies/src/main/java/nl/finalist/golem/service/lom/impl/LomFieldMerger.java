@@ -4,7 +4,7 @@ import nl.finalist.golem.repository.lom.LomRecordNode;
 
 import org.ieee.ltsc.Lom;
 
-public interface LomFieldMerger {
+interface LomFieldMerger {
 
 	void merge(Lom lom, LomRecordNode recordNode);
 

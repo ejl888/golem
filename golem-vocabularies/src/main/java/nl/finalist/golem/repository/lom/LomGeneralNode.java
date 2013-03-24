@@ -1,6 +1,5 @@
 package nl.finalist.golem.repository.lom;
 
-import java.util.Arrays;
 import java.util.Set;
 
 import nl.finalist.golem.repository.vocabulary.VocabularyTermNode;
@@ -14,7 +13,7 @@ import org.springframework.data.neo4j.annotation.RelatedTo;
 public class LomGeneralNode extends PartOfLomRecordNode {
     
     // is not unique!
-    @RelatedTo(type = "IDENTIFIED_BY")
+    @RelatedTo(type = "IDENTIFIED_BY", elementClass = LearningObjectIdentifierNode.class)
     private Set<LearningObjectIdentifierNode> identifiers;
     
     // fulltext candidate (LangText)
@@ -43,11 +42,8 @@ public class LomGeneralNode extends PartOfLomRecordNode {
 		// TODO Auto-generated constructor stub
 	}
 
-	LomGeneralNode(LomRecordNode parentLomRecord, LearningObjectIdentifierNode... identifiers) {
+	public LomGeneralNode(LomRecordNode parentLomRecord) {
 		super(parentLomRecord);
-		if (identifiers != null) {
-			this.identifiers.addAll(Arrays.asList(identifiers));
-		}
 	}
 
 	public Set<LearningObjectIdentifierNode> getIdentifiers() {

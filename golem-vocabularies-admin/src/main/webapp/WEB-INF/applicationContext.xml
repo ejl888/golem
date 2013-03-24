@@ -11,9 +11,18 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <neo4j:config graphDatabaseService="graphDatabaseService" />
-    <bean id="graphDatabaseService" class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase">
-        <constructor-arg index="0" value="http://localhost:7474/db/data" />
+    <bean id="graphDatabaseService" class="org.neo4j.kernel.EmbeddedGraphDatabase" destroy-method="shutdown">
+        <constructor-arg index="0" value="c:/data/neo4j/db/lom" />
+        <constructor-arg index="1">
+        <map>
+            <entry key="allow_store_upgrade" value="true"/>
+            <entry key="enable_remote_shell" value="true"/>
+        </map>
+    </constructor-arg>
     </bean>
+<!--     <bean id="graphDatabaseService" class="org.springframework.data.neo4j.rest.SpringRestGraphDatabase"> -->
+<!--         <constructor-arg index="0" value="http://localhost:7474/db/data" /> -->
+<!--     </bean> -->
     <import resource="classpath:/vocabularies-context.xml" />
 
    <bean

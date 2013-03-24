@@ -1,11 +1,8 @@
 package org.ieee.ltsc;
 
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -14,15 +11,13 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
  * @author Rob Schellhorn
  * @since 1.0
  */
-@XmlType(name = "langstringType")
+@XmlType(name = "string")
 public final class Langstring {
 
     public final static String NO_LANGUAGE = "x-none";
     public static final String DUTCH = "nl";
 
-    @XmlAttribute(namespace = "http://www.w3.org/XML/1998/namespace")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlSchemaType(name = "language")
+    @XmlAttribute(name = "language")
     private String lang;
 
     @XmlValue

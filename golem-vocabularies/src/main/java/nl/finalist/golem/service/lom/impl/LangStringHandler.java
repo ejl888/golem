@@ -4,15 +4,14 @@ import java.util.Collection;
 
 import org.apache.commons.lang3.StringUtils;
 import org.ieee.ltsc.Langstring;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
-public class LangStringHandler {
+class LangStringHandler {
 
 	private static final String NON_LANGUAGE = "x-none";
 	
-	@Value("${lom.record.merger.language}")
+//	@Value("${lom.record.merger.language}")
 	private String language = "nl";
 	
 	public String getLanguageText(Collection<Langstring> languageStrings) {

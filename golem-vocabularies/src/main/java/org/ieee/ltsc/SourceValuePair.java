@@ -14,29 +14,32 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 public final class SourceValuePair {
     
     @XmlElement(name = "source")
-    private LangstringWrapper source;
+    private String source;
 
     @XmlElement(name = "value")
-    private LangstringWrapper value;
+    private String value;
     
     public SourceValuePair() {
         super();
         // required by JaxB
     }
     
-    public SourceValuePair(Langstring source, Langstring value) {
-        this.source = new LangstringWrapper(source);
-        this.value = new LangstringWrapper(value);
+    public String getSource() {
+        return source;
     }
 
-    public Langstring getSource() {
-        return source == null ? null : source.getLangstring();
+    public void setSource(String source) {
+        this.source = source;
     }
 
-    public Langstring getValue() {
-        return value == null ? null : value.getLangstring();
+    public String getValue() {
+        return value;
     }
-    
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

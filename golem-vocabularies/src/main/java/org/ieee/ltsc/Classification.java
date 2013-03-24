@@ -16,7 +16,7 @@ public final class Classification {
     @XmlElement(name = "purpose")
     private SourceValuePair purpose;
 
-    @XmlElement(name = "taxonpath")
+    @XmlElement(name = "taxonPath")
     private List<TaxonPath> taxonPaths = new ArrayList<TaxonPath>();
 
     public Classification() {

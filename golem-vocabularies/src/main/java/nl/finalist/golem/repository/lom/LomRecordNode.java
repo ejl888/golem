@@ -15,40 +15,42 @@ public class LomRecordNode {
     
 	@GraphId private Long nodeId;
 	
-	@Indexed(unique = true) private String recordId;
+	@Indexed(unique = true, indexName = "lom-record-id") 
+	private String recordId;
 
 	// field 1
     @RelatedTo(type = "GENERAL")
-    private LomGeneralNode general = new LomGeneralNode(this);
-
-    // field 2
-    @RelatedTo(type = "LIFECYCLE")
-    private LomLifeCycleNode lifeCycle;
-
-    // field 3 meta metadata
+    private LomGeneralNode general;
     
-    // field 4
-    @RelatedTo(type = "TECHNICAL")
-    private LomTechnicalNode technical;
-
-    // field 5 educational
-    
-    // field 6
-    @RelatedTo(type = "RIGHTS")
-    private LomRightsNode rights;
-    
-    // field 7
-    @RelatedTo(type = "RELATED_TO", elementClass = LomRelationNode.class)
-    private Set<LomRelationNode> relations = new HashSet<>();
+//    // field 2
+//    @RelatedTo(type = "LIFECYCLE")
+//    private LomLifeCycleNode lifeCycle;
+//
+//    // field 3 meta metadata
+//    
+//    // field 4
+//    @RelatedTo(type = "TECHNICAL")
+//    private LomTechnicalNode technical;
+//
+//    // field 5 educational
+//    
+//    // field 6
+//    @RelatedTo(type = "RIGHTS")
+//    private LomRightsNode rights;
+//    
+//    // field 7
+//    @RelatedTo(type = "RELATED_TO", elementClass = LomRelationNode.class)
+//    private Set<LomRelationNode> relations = new HashSet<>();
 
     // field 9
     @RelatedTo(type = "CLASSIFICATIONS", elementClass = LomClassificationNode.class)
     private Set<LomClassificationNode> classifications = new HashSet<>();
 
-    
-    protected LomRecordNode() {
-    	// required by Spring
+    LomRecordNode() {
+        super();
+        // Required by Spring
     }
+    
     
 	public LomRecordNode(String recordId) {
 		super();
@@ -63,37 +65,41 @@ public class LomRecordNode {
 		return general;
 	}
 
-	public LomLifeCycleNode getLifeCycle() {
-		return lifeCycle;
-	}
-
-	public void setLifeCycle(LomLifeCycleNode lifeCycle) {
-		this.lifeCycle = lifeCycle;
-	}
-
-	public LomTechnicalNode getTechnical() {
-		return technical;
-	}
-
-	public void setTechnical(LomTechnicalNode technical) {
-		this.technical = technical;
-	}
-
-	public LomRightsNode getRights() {
-		return rights;
-	}
-
-	public void setRights(LomRightsNode rights) {
-		this.rights = rights;
-	}
-
-	public Set<LomRelationNode> getRelations() {
-		return relations;
-	}
-
-	public void addRelations(LomRelationNode relation) {
-		this.relations.add(relation);
-	}
+	public void setGeneral(LomGeneralNode general) {
+        this.general = general;
+    }
+	
+//	public LomLifeCycleNode getLifeCycle() {
+//		return lifeCycle;
+//	}
+//
+//	public void setLifeCycle(LomLifeCycleNode lifeCycle) {
+//		this.lifeCycle = lifeCycle;
+//	}
+//
+//	public LomTechnicalNode getTechnical() {
+//		return technical;
+//	}
+//
+//	public void setTechnical(LomTechnicalNode technical) {
+//		this.technical = technical;
+//	}
+//
+//	public LomRightsNode getRights() {
+//		return rights;
+//	}
+//
+//	public void setRights(LomRightsNode rights) {
+//		this.rights = rights;
+//	}
+//
+//	public Set<LomRelationNode> getRelations() {
+//		return relations;
+//	}
+//
+//	public void addRelations(LomRelationNode relation) {
+//		this.relations.add(relation);
+//	}
 
 	public Set<LomClassificationNode> getClassifications() {
 		return classifications;

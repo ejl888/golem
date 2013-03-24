@@ -21,7 +21,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
 @Component
-public class LomFieldGeneralMerger extends LanguageSpecificMerger implements LomFieldMerger {
+class LomFieldGeneralMerger extends SingleLanguageLomMerger implements LomFieldMerger {
 
 	private final Function<CatalogEntry, LearningObjectIdentifierNode> identifierTransformer = 
 			new Function<CatalogEntry, LearningObjectIdentifierNode>() {
@@ -42,7 +42,8 @@ public class LomFieldGeneralMerger extends LanguageSpecificMerger implements Lom
 	public void merge(Lom lom, LomRecordNode recordNode) {
 		final General source = lom.getGeneral();
 		
-		final LomGeneralNode target = recordNode.getGeneral();
+		final LomGeneralNode target = new LomGeneralNode(recordNode);
+        recordNode.setGeneral(target);
 		
 		List<Langstring> title = source.getTitle();
 		target.setTitle(getBestText(title));

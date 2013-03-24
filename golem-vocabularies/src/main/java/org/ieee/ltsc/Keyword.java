@@ -5,6 +5,7 @@ import static com.finalist.commons.util.CollectionUtils.lazyInitOnAdd;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
@@ -14,6 +15,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType
 public final class Keyword {
 
+    @XmlElement(name = "string")
     private List<Langstring> langstring;
 
     public List<Langstring> getLangstring() {

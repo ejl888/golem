@@ -5,6 +5,7 @@ import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
+import org.springframework.data.neo4j.support.index.IndexType;
 
 @TypeAlias("VocabularyTerm")
 @NodeEntity(useShortNames = true)
@@ -12,16 +13,19 @@ public class VocabularyTermNode {
 
     @GraphId private Long nodeId;
     
-    @Indexed(unique = true) private String uri;
+    @Indexed(unique = true, indexName = "vocabulary-term-uri") 
+    private String uri;
     
     private String sourceId;
 
     @RelatedTo private VocabularySourceNode vocabularySourceNode;
     
  // fulltext candidate (LangText)
+    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "term-caption")
     private String caption;
     
  // fulltext candidate (LangText)
+    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "term-description")
     private String description;
 
     private boolean managed;
@@ -71,8 +75,8 @@ public class VocabularyTermNode {
         return description;
     }
 
-    public static String createUri(String vocabularySourceId, String sourceId) {
-        return vocabularySourceId + "#" + sourceId;
+    public static String createUri(String vocabularySourceId, String sourceTermId) {
+        return vocabularySourceId + "#" + sourceTermId;
     }
 
     public boolean isManaged() {

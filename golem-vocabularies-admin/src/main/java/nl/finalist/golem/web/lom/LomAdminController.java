@@ -27,7 +27,7 @@ public class LomAdminController {
     @RequestMapping
     String doIt(Model model) throws ZipException, IOException, JAXBException {
     	
-    	final File archiveFile = new File("C:/Users/ernst-jan/Documents/Customers/Kennisnet/smallstorage.zip");
+    	final File archiveFile = new File("C:/Users/ernst-jan/Documents/Customers/Kennisnet/1500.zip");
 		lomService.loadLomsFromArchive(archiveFile);
     	
     	

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.xml.bind.JAXBException;
 
 import nl.finalist.golem.repository.vdex.VdexNode;
-import nl.finalist.golem.repository.vdex.VdexRepository;
+import nl.finalist.golem.repository.vdex.VdexNodeRepository;
 import nl.finalist.golem.service.vdex.VdexSummary;
 import nl.finalist.golem.service.vdex.VdexService;
 import nl.finalist.golem.service.vdex.xml.Vdex;
@@ -25,7 +25,7 @@ public class VdexServiceImpl implements VdexService {
     
     @Autowired private VdexLoader vdexLoader;
     
-    @Autowired private VdexRepository vdexRepository;
+    @Autowired private VdexNodeRepository vdexRepository;
     
     private static final Function<VdexNode, VdexSummary> VDEX_SUMMARY_TRANSFORMER = new Function<VdexNode, VdexSummary>() {
         @Override

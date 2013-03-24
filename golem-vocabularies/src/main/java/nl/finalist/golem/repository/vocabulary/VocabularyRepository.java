@@ -16,9 +16,8 @@ public class VocabularyRepository {
     @Autowired
     private VocabularyTermRepository vocabularyTermRepository;
 
-    public VocabularyTermNode findOrCreate(String vocabularySourceId, String sourceTermId) {
-        VocabularyTermNode result = vocabularyTermRepository.findByPropertyValue(URI_PROP, 
-                createUri(vocabularySourceId, sourceTermId));
+    public VocabularyTermNode findOrCreateVocabularyTerm(String vocabularySourceId, String sourceTermId) {
+        VocabularyTermNode result = vocabularyTermRepository.findByUri(createUri(vocabularySourceId, sourceTermId));
         if (result == null) {
             result = new VocabularyTermNode(findOrCreateVocabularySource(vocabularySourceId), sourceTermId);
         }

@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.List;
 
 import nl.finalist.golem.repository.vdex.VdexNode;
-import nl.finalist.golem.repository.vdex.VdexRepository;
+import nl.finalist.golem.repository.vdex.VdexNodeRepository;
 import nl.finalist.golem.repository.vdex.VdexTerm;
 import nl.finalist.golem.repository.vdex.VdexTermRelationshipNode;
 import nl.finalist.golem.repository.vocabulary.VocabularyRepository;
@@ -29,7 +29,7 @@ public class VdexMerger {
     private static final Logger LOGGER = LoggerFactory.getLogger(VdexMerger.class);
 
     @Autowired private VocabularyRepository vocabularyRepository;
-    @Autowired private VdexRepository vdexRepository;
+    @Autowired private VdexNodeRepository vdexRepository;
 
     private String language = "nl";
     
@@ -111,7 +111,7 @@ public class VdexMerger {
     }
     
     private VocabularyTermNode findOrCreateVocabularyTerm(final String vocabularySourceId, String termSourceId) {
-        return vocabularyRepository.findOrCreate(vocabularySourceId, termSourceId);
+        return vocabularyRepository.findOrCreateVocabularyTerm(vocabularySourceId, termSourceId);
         
     }
 

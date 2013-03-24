@@ -18,7 +18,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
 @Component
-public class LomFieldClassificationMerger extends LanguageSpecificMerger implements LomFieldMerger {
+class LomFieldClassificationMerger extends SingleLanguageLomMerger implements LomFieldMerger {
 
     @Override
 	public void merge(Lom lom, final LomRecordNode recordNode) {
@@ -29,14 +29,15 @@ public class LomFieldClassificationMerger extends LanguageSpecificMerger impleme
 				final VocabularyTermNode purpose = findOrCreateVocabularyTerm(input.getPurpose());
 				LomClassificationNode result = new LomClassificationNode(recordNode, purpose);
 
-				// TODO description en keywords
+				// TODO description and keywords
 				result.setClassifiers(toClassifiers(input.getTaxonPaths()));
 				
 				return result;
 			}
 		};
 		
-		recordNode.setClassifications(new HashSet<>(Lists.transform(lom.getClassifications(), classificationTransformer)));
+		recordNode.setClassifications(new HashSet<>(
+		        Lists.transform(lom.getClassifications(), classificationTransformer)));
 	}
 
     protected Set<VocabularyTermNode> toClassifiers(List<TaxonPath> taxonPaths) {
@@ -55,6 +56,4 @@ public class LomFieldClassificationMerger extends LanguageSpecificMerger impleme
         }
         return result;
     }
-
-
 }
