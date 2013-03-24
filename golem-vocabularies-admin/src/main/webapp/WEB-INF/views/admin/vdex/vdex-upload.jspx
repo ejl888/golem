@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:sec="http://www.springframework.org/security/tags"
+    xmlns:form="http://www.springframework.org/tags/form" 
+    xmlns:joda="http://www.joda.org/joda/time/tags"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:gg="http://groengelinkt.nl" 
+    xmlns:spring="http://www.springframework.org/tags">
+
+<jsp:directive.page contentType="text/html" />
+<jsp:output doctype-root-element="html" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+    doctype-system="http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" omit-xml-declaration="yes" />
+
+<head>
+    <title>Vdex upload</title>
+</head>
+
+<body>
+    <h1>Vdex - upload</h1>
+    <p></p>
+    <p>Kies een vdex bestand.</p>
+    <form:form id="upload" commandName="vdexForm" action="upload"
+        method="post" enctype="multipart/form-data">
+        <form:errors path="*" cssClass="errors" element="div" />
+        
+        <fieldset>
+            <dl>
+                <dd><form:label path="file">Bestand*</form:label></dd>
+                <dt><input type="file" name="file" value="file" /></dt>
+                <dd><form:label path="vocabularySourceId">Vocab source id</form:label></dd>
+                <dt><input type="text" name="vocabularySourceId" value="" /></dt>
+            </dl>
+            <form:button label="Upload" >Upload</form:button>
+        </fieldset>
+    </form:form>
+</body>
+
+</html>

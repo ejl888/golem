@@ -16,10 +16,10 @@
     </bean>
     <import resource="classpath:/vocabularies-context.xml" />
 
-<!--    <bean -->
-<!--         id="multipartResolver" -->
-<!--         class="org.springframework.web.multipart.commons.CommonsMultipartResolver" -->
-<!--         p:maxUploadSize="10000000" /> -->
+   <bean
+        id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+        p:maxUploadSize="10000000" />
 
 <!--     <context:spring-configured/> -->
 

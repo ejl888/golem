@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 public class VocabularyTermRepositoryTest {
 
     private static final String AUTHOR_SOURCE_ID = "author";
+    
     @Autowired VocabularyTermRepository testSubject;
     @Autowired VocabularySourceRepository sourceRepository;
     

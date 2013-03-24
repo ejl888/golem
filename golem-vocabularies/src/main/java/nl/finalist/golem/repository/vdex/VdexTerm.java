@@ -2,25 +2,32 @@ package nl.finalist.golem.repository.vdex;
 
 import nl.finalist.golem.repository.vocabulary.VocabularyTermNode;
 
-import org.springframework.data.neo4j.annotation.EndNode;
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.neo4j.annotation.GraphId;
-import org.springframework.data.neo4j.annotation.RelationshipEntity;
-import org.springframework.data.neo4j.annotation.StartNode;
+import org.springframework.data.neo4j.annotation.NodeEntity;
+import org.springframework.data.neo4j.annotation.RelatedTo;
 
-@RelationshipEntity(type = VdexTerm.TYPE, useShortNames = true)
+@TypeAlias(VdexTerm.TYPE)
+@NodeEntity(useShortNames = true)
 public class VdexTerm {
 
     @GraphId private Long nodeId;
     
-    public static final String TYPE = "VDEX_CONTAINS_TERM";
+    public static final String TYPE = "VDEX_TERM";
     
-    private boolean validIndex;
+	private boolean validIndex;
     private boolean orderSignificant;
     
-    @StartNode private VdexNode parentVdex;
-    @EndNode private VocabularyTermNode vocabularyTermNode;
+    @RelatedTo(type = "PARENT_VDEX") private VdexNode parentVdex;
+
+    // index in the parent Vdex
+    private int index;
     
+    @RelatedTo(type = "VOCABULARY_TERM") private VocabularyTermNode vocabularyTermNode;
     
+    public int getIndex() {
+    	return index;
+    }
     
     VdexTerm() {
         super();
@@ -54,9 +61,11 @@ public class VdexTerm {
         return parentVdex;
     }
 
-    public VocabularyTermNode getTerm() {
+    public VocabularyTermNode getVocabularyTerm() {
         return vocabularyTermNode;
     }
-    
-    
+
+	void setIndex(int index) {
+		this.index = index;
+	}
 }

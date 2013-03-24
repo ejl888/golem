@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 
 import javax.xml.bind.JAXBException;
 
-import nl.finalist.golem.service.vocabulary.VocabularyService;
+import nl.finalist.golem.service.vdex.impl.VdexServiceImpl;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,7 +22,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 @ContextConfiguration(loader = AnnotationConfigContextLoader.class)
 public class VocabularyServiceImplTest {
 
-    @Autowired private VocabularyService testSubject;
+    @Autowired private VdexServiceImpl testSubject;
 
     @Configuration
     @ImportResource(value = {"classpath:/vocabularies-test-context.xml" })

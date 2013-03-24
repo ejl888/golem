@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3c.org/1999/xhtml" 
+    xmlns:c="http://java.sun.com/jsp/jstl/core"
+    xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+    xmlns:sec="http://www.springframework.org/security/tags"
+    xmlns:form="http://www.springframework.org/tags/form" 
+    xmlns:joda="http://www.joda.org/joda/time/tags"
+    xmlns:jsp="http://java.sun.com/JSP/Page" 
+    xmlns:gg="http://groengelinkt.nl" 
+    xmlns:spring="http://www.springframework.org/tags">
+
+<jsp:directive.page contentType="text/html" />
+<jsp:output doctype-root-element="html" doctype-public="-//W3C//DTD XHTML 1.0 Transitional//EN"
+    doctype-system="http://www.w3c.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" omit-xml-declaration="yes" />
+
+<head>
+    <title>Vdex overview</title>
+</head>
+
+<body>
+    <h1>Vdex - overview</h1>
+    <p></p>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Identifier</th>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach items="${vdexs}" var="vdex" varStatus="status">
+                <tr>
+                    <td><c:out value="${vdex.name}" /></td>
+                    <td><c:out value="${vdex.identifier}" /></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
+</body>
+
+</html>

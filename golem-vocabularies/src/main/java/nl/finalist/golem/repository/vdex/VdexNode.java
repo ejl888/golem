@@ -5,11 +5,12 @@ import java.util.Set;
 
 import nl.finalist.golem.repository.vocabulary.VocabularySourceNode;
 
+import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
-import org.springframework.data.neo4j.annotation.RelatedToVia;
 
+@TypeAlias("Vdex")
 @NodeEntity(useShortNames = true)
 public class VdexNode {
 
@@ -21,10 +22,10 @@ public class VdexNode {
     
     @RelatedTo private VocabularySourceNode vocabularySourceNode;
     
-    @RelatedToVia(type = VdexTerm.TYPE, elementClass = VdexTerm.class)
+    @RelatedTo(type = VdexTerm.TYPE)
     private Set<VdexTerm> vdexTerms = new LinkedHashSet<>();
     
-    @RelatedTo
+    @RelatedTo(type = "RELATIONSHIPS")
     private Set<VdexTermRelationshipNode> relationships = new LinkedHashSet<>();
 
     VdexNode() {
@@ -40,6 +41,7 @@ public class VdexNode {
     
     void addTerm(VdexTerm vdexTerm) {
         this.vdexTerms.add(vdexTerm);
+        vdexTerm.setIndex(vdexTerms.size());
     }
     
     public Long getNodeId() {
@@ -68,5 +70,8 @@ public class VdexNode {
 
     void addRelationship(VdexTermRelationshipNode relationship) {
         this.relationships.add(relationship);
+        relationship.setIndex(relationships.size());
     }
+    
+    
 }
