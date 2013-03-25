@@ -28,11 +28,11 @@ public final class Lom {
     @XmlElement(name = "relation")
     private List<Relation> relations;
 
-    @XmlElement(name = "classification")
-    private List<Classification> classifications;
-
     @XmlElement(name = "annotation")
     private List<Annotation> annotations;
+
+    @XmlElement(name = "classification")
+    private List<Classification> classifications;
 
     public List<Annotation> getAnnotations() {
         return emptyListWhenNull(annotations);

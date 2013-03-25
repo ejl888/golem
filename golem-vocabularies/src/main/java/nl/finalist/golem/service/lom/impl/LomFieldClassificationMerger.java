@@ -51,7 +51,8 @@ class LomFieldClassificationMerger extends SingleLanguageLomMerger implements Lo
             
             final List<Taxon> taxons = taxonPath.getTaxons();
             for (Taxon taxon : taxons) {
-                result.add(findOrCreateVocabularyTerm(vocabularySourceId, taxon.getId()));
+                VocabularyTermNode term = save(findOrCreateVocabularyTerm(vocabularySourceId, taxon.getId()));
+                result.add(term);
             }
         }
         return result;

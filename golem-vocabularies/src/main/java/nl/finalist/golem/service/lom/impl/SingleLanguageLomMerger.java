@@ -29,8 +29,12 @@ class SingleLanguageLomMerger {
         return findOrCreateVocabularyTerm(sourceValue.getSource(), sourceValue.getValue());
     }
 
-    public VocabularyTermNode findOrCreateVocabularyTerm(String vocabularySourceUri, String termId) {
+    public final VocabularyTermNode findOrCreateVocabularyTerm(String vocabularySourceUri, String termId) {
         return vocabularyRepository.findOrCreateVocabularyTerm(vocabularySourceUri, termId);
+    }
+
+    public final VocabularyTermNode save(VocabularyTermNode entity) {
+        return vocabularyRepository.save(entity);
     }
 
 }

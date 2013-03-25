@@ -11,7 +11,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:/vocabularies-context.xml" })
+@ContextConfiguration(locations = {"classpath:/vocabularies-test-context.xml" })
 public class VocabularySourceRepositoryTest {
 
     @Autowired VocabularySourceRepository testSubject;

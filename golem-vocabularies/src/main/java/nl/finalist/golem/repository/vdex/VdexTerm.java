@@ -13,7 +13,7 @@ public class VdexTerm {
 
     @GraphId private Long nodeId;
     
-    public static final String TYPE = "VDEX_TERM";
+    public static final String TYPE = "VdexTermM";
     
 	private boolean validIndex;
     private boolean orderSignificant;

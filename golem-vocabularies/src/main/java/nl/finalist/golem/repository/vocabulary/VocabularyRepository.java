@@ -33,7 +33,16 @@ public class VocabularyRepository {
     }
 
     private VocabularySourceNode createVocabularySource(String vocabularySourceUri) {
-        return vocabularySourceRepository.save(new VocabularySourceNode(vocabularySourceUri));
+        VocabularySourceNode entity = new VocabularySourceNode(vocabularySourceUri);
+        return save(entity);
+    }
+
+    public VocabularySourceNode save(VocabularySourceNode entity) {
+        return vocabularySourceRepository.save(entity);
+    }
+    
+    public VocabularyTermNode save(VocabularyTermNode entity) {
+        return vocabularyTermRepository.save(entity);
     }
 
     private VocabularySourceNode findVocabularySourceByUri(String vocabularySourceUri) {

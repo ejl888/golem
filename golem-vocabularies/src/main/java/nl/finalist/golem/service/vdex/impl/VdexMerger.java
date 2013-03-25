@@ -89,6 +89,7 @@ public class VdexMerger {
             termNode.setCaption(term.getCaption().getValue(language));
             termNode.setDescription(term.getDescription().getValue(language));
             termNode.setManaged(true);
+            termNode = vocabularyRepository.save(termNode);
         }
         
         final VdexTerm vdexTerm = new VdexTerm(vdexNode, termNode);
