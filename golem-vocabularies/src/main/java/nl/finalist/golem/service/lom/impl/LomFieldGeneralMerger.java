@@ -43,7 +43,7 @@ class LomFieldGeneralMerger extends SingleLanguageLomMerger implements LomFieldM
 		final General source = lom.getGeneral();
 		
 		LomGeneralNode target = recordNode.getGeneral();
-		if (target != null) {
+		if (target == null) {
 		    target = new LomGeneralNode(recordNode);
 	        recordNode.setGeneral(target);
 		}
