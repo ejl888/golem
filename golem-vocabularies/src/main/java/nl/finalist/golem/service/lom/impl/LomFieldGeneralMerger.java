@@ -42,8 +42,11 @@ class LomFieldGeneralMerger extends SingleLanguageLomMerger implements LomFieldM
 	public void merge(Lom lom, LomRecordNode recordNode) {
 		final General source = lom.getGeneral();
 		
-		final LomGeneralNode target = new LomGeneralNode(recordNode);
-        recordNode.setGeneral(target);
+		LomGeneralNode target = recordNode.getGeneral();
+		if (target != null) {
+		    target = new LomGeneralNode(recordNode);
+	        recordNode.setGeneral(target);
+		}
 		
 		List<Langstring> title = source.getTitle();
 		target.setTitle(getBestText(title));

@@ -1,7 +1,8 @@
 package nl.finalist.golem.repository.vocabulary;
 
+import nl.finalist.golem.repository.common.CachedHashCodeNode;
+
 import org.springframework.data.annotation.TypeAlias;
-import org.springframework.data.neo4j.annotation.GraphId;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
 import org.springframework.data.neo4j.annotation.RelatedTo;
@@ -9,10 +10,8 @@ import org.springframework.data.neo4j.support.index.IndexType;
 
 @TypeAlias("VocabularyTerm")
 @NodeEntity(useShortNames = true)
-public class VocabularyTermNode {
+public class VocabularyTermNode extends CachedHashCodeNode {
 
-    @GraphId private Long nodeId;
-    
     @Indexed(unique = true, indexName = "vocabulary-term-uri") 
     private String uri;
     
@@ -49,10 +48,6 @@ public class VocabularyTermNode {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Long getNodeId() {
-        return nodeId;
     }
 
     public String getUri() {

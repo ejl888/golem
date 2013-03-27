@@ -4,6 +4,7 @@ import java.util.Set;
 
 import nl.finalist.golem.repository.vocabulary.VocabularyTermNode;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.data.annotation.TypeAlias;
 import org.springframework.data.neo4j.annotation.Indexed;
 import org.springframework.data.neo4j.annotation.NodeEntity;
@@ -110,4 +111,9 @@ public class LomGeneralNode extends PartOfLomRecordNode {
 	public void setIdentifiers(Set<LearningObjectIdentifierNode> identifiers) {
 		this.identifiers = identifiers;
 	}
+
+	public boolean matchesExactly(LomGeneralNode other) {
+        return EqualsBuilder.reflectionEquals(this, other, false);
+        
+    }
 }
