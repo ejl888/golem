@@ -21,6 +21,14 @@
 					<artifactId>slf4j-jdk14</artifactId>
 					<groupId>org.slf4j</groupId>
 				</exclusion>
+				<exclusion>
+					<artifactId>servlet-api</artifactId>
+					<groupId>org.mortbay.jetty</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>logback-access</artifactId>
+					<groupId>ch.qos.logback</groupId>
+				</exclusion>
 			</exclusions>
 		</dependency>
 		<dependency>
@@ -28,7 +36,7 @@
 			<artifactId>neo4j-server</artifactId>
 			<version>1.8.1</version>
 			<classifier>static-web</classifier>
-			<scope>provided</scope>
+<!-- 			<scope>provided</scope> -->
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-jdk14</artifactId>

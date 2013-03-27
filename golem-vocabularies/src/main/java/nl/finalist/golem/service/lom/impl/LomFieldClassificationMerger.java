@@ -8,6 +8,7 @@ import nl.finalist.golem.repository.lom.LomClassificationNode;
 import nl.finalist.golem.repository.lom.LomRecordNode;
 import nl.finalist.golem.repository.vocabulary.VocabularyTermNode;
 
+import org.apache.commons.lang3.StringUtils;
 import org.ieee.ltsc.Classification;
 import org.ieee.ltsc.Lom;
 import org.ieee.ltsc.Taxon;
@@ -47,14 +48,22 @@ class LomFieldClassificationMerger extends SingleLanguageLomMerger implements Lo
         
         final Set<VocabularyTermNode> result = new HashSet<>(taxonPaths.size());
         for (TaxonPath taxonPath : taxonPaths) {
-            final String vocabularySourceId = taxonPath.getSource().getValue();
-            
-            final List<Taxon> taxons = taxonPath.getTaxons();
-            for (Taxon taxon : taxons) {
-                VocabularyTermNode term = save(findOrCreateVocabularyTerm(vocabularySourceId, taxon.getId()));
-                result.add(term);
+            final String vocabularySourceId = getVocabularySourceUri(taxonPath);
+            if (StringUtils.isNotBlank(vocabularySourceId)) {
+                final List<Taxon> taxons = taxonPath.getTaxons();
+                for (Taxon taxon : taxons) {
+                    VocabularyTermNode term = save(findOrCreateVocabularyTerm(vocabularySourceId, taxon.getId()));
+                    result.add(term);
+                }
             }
         }
         return result;
+    }
+
+    public String getVocabularySourceUri(TaxonPath taxonPath) {
+        if (taxonPath == null || taxonPath.getSource() == null) {
+            return null;
+        }
+        return taxonPath.getSource().getValue();
     }
 }

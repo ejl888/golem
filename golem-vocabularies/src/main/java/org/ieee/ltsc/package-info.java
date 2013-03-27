@@ -3,7 +3,7 @@
     @XmlJavaTypeAdapter(value = DateTimeAdapter.class, type = Date.class)
 })
 @XmlSchema(namespace = "http://ltsc.ieee.org/xsd/LOM",
-    elementFormDefault = XmlNsForm.UNQUALIFIED)
+    elementFormDefault = XmlNsForm.QUALIFIED)
 package org.ieee.ltsc;
 
 import java.util.Date;
