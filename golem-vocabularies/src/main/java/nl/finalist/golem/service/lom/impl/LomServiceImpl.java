@@ -20,8 +20,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class LomServiceImpl implements LomService {
 	
 	private final static Logger LOGGER = LoggerFactory.getLogger(LomServiceImpl.class);
@@ -47,7 +49,9 @@ public class LomServiceImpl implements LomService {
 					
 					final LomRecordNode lomRecordNode = lomMerger.merge(zipEntryReader, 
 					        toLomRecordId(zipEntry.getName()));
-					LOGGER.info("Processed entry {} from {} nodeID = {}", i, numberOfEntries, lomRecordNode.getNodeId());
+					if (i % 100 == 0) {
+					    LOGGER.info("Processed entry {} from {} nodeID = {}", i, numberOfEntries, lomRecordNode.getNodeId());
+					}
                 } catch (JAXBException ex) {
                     LOGGER.debug("Skipping entry {} due to unmarshall error {}", zipEntry.getName(), ex.getMessage());
 				} catch (Exception ex) {
