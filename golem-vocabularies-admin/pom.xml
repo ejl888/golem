@@ -36,7 +36,7 @@
 			<artifactId>neo4j-server</artifactId>
 			<version>1.8.1</version>
 			<classifier>static-web</classifier>
- 			<scope>provided</scope>
+<!-- 			<scope>provided</scope> -->
 			<exclusions>
 				<exclusion>
 					<artifactId>slf4j-jdk14</artifactId>
@@ -69,11 +69,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-<!-- 		<dependency> -->
-<!-- 			<groupId>org.springframework.data</groupId> -->
-<!-- 			<artifactId>spring-data-neo4j-rest</artifactId> -->
-<!-- 			<version>2.2.0.RELEASE</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>org.springframework.data</groupId> -->
+		<!-- <artifactId>spring-data-neo4j-rest</artifactId> -->
+		<!-- <version>2.2.0.RELEASE</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -89,35 +89,32 @@
 	</dependencies>
 
 	<build>
+		<finalName>golem</finalName>
 		<plugins>
-			<!--
-                For some reason tomcat doesn't like it when the neo4j-server static-web jar is included in the WAR file
-                It throws exceptions like:
-                    SEVERE: /webadmin/css/style.css
-                        java.lang.IllegalStateException: zip file closed
-
-                If we instead extract the contents into the WAR, it is much happier.
-            -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>unpack-dependencies</goal>
-                        </goals>
-                        <phase>process-resources</phase>
-                    </execution>
-                </executions>
-                <configuration>
-                    <includeGroupIds>org.neo4j.app</includeGroupIds>
-                    <includeArtifactIds>neo4j-server</includeArtifactIds>
-                    <includeClassifiers>static-web</includeClassifiers>
-                    <includes>webadmin-html/**</includes>
-                    <outputDirectory>target/${artifactId}-${version}/WEB-INF/classes</outputDirectory>
-                </configuration>
-            </plugin>
+			<!-- For some reason tomcat doesn't like it when the neo4j-server static-web 
+				jar is included in the WAR file It throws exceptions like: SEVERE: /webadmin/css/style.css 
+				java.lang.IllegalStateException: zip file closed If we instead extract the 
+				contents into the WAR, it is much happier. -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.4</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<phase>process-resources</phase>
+					</execution>
+				</executions>
+				<configuration>
+					<includeGroupIds>org.neo4j.app</includeGroupIds>
+					<includeArtifactIds>neo4j-server</includeArtifactIds>
+					<includeClassifiers>static-web</includeClassifiers>
+					<includes>webadmin-html/**</includes>
+					<outputDirectory>target/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-war-plugin</artifactId>
@@ -126,6 +123,17 @@
 					<warName>golem</warName>
 				</configuration>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<!-- http port -->
+					<port>9090</port>
+					<path>/${project.build.finalName}</path>
+					<!-- application path always starts with / -->
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
+
 </project>

@@ -20,15 +20,15 @@ public class LomGeneralNode extends PartOfLomRecordNode {
     private Set<LearningObjectIdentifierNode> identifiers;
     
     // fulltext candidate (LangText)
-    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "lom.general.title")
+    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "lom_general_text")
     private String title;
     
     // fulltext candidate (LangText)
-    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "lom.general.description")
+    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "lom_general_text")
     private String description;
     
     // fulltext candidate (LangText)
-    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "lom.general.keywords")
+    @Indexed(unique = false, indexType = IndexType.FULLTEXT, indexName = "lom_general_text")
     private String[] keywords;
     
     // fulltext candidate (LangText)

@@ -15,7 +15,7 @@ public class LomRecordNode {
     
 	@GraphId private Long nodeId;
 	
-	@Indexed(unique = true, indexName = "lom-record-id") 
+	@Indexed(unique = true) 
 	private String recordId;
 
 	// field 1

@@ -58,6 +58,7 @@ public class LomServiceImpl implements LomService {
 				    LOGGER.error("foutje", ex);
 				}
 			}
+			LOGGER.info("Finished {} records", i);
 		}
 
 		return result;
